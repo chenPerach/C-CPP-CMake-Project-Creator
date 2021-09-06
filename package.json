@@ -1,6 +1,9 @@
 {
 	"publisher": "ChenPerach",
 	"license": "MIT",
+	"repository": {
+		"url": "https://github.com/chenPerach/C-CPP-CMake-Project-Creator"
+	},
 	"name": "c-cpp-cmake-project-creator",
 	"displayName": "c cpp cmake project creator",
 	"description": "creats a basic template for c and cpp projects using cmake",
