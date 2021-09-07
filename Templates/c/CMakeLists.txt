@@ -10,7 +10,7 @@ file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.c)
 
 # a macro that gets all of the header containing directories. 
 MACRO(header_directories return_list includes_base_folder extention)
-    FILE(GLOB_RECURSE new_list ${includes_base_folder})
+    FILE(GLOB_RECURSE new_list ${includes_base_folder}/*.${extention})
     SET(dir_list "")
     FOREACH(file_path ${new_list})
         GET_FILENAME_COMPONENT(dir_path ${file_path} PATH)

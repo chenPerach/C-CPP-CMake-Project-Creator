@@ -10,7 +10,7 @@ file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
 # a macro that gets all of the header containing directories. 
 MACRO(header_directories return_list includes_base_folder extention )
-    FILE(GLOB_RECURSE new_list ${includes_base_folder})
+    FILE(GLOB_RECURSE new_list ${includes_base_folder}/*.${extention})
     SET(dir_list "")
     FOREACH(file_path ${new_list})
         GET_FILENAME_COMPONENT(dir_path ${file_path} PATH)
@@ -23,7 +23,15 @@ ENDMACRO()
 # using said macro.
 header_directories(INCLUDES ${PROJECT_SOURCE_DIR}/include/ hpp)
 
-message(STATUS ${SRCS})
+message("src files:")
+foreach(file ${SRCS})
+        message(STATUS ${file})
+endforeach()
+
+message("include directories:")
+foreach(dir ${INCLUDES})
+        message(STATUS ${dir})
+endforeach()
 add_executable(${PROJECT_N} ${SRCS})
 
 target_include_directories(${PROJECT_N} PUBLIC include)
