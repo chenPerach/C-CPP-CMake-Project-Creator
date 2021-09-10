@@ -1,39 +1,70 @@
-{  
+{
     "tasks": [
         {
             "type": "shell",
             "label": "reset",
-            "command": "bash -c ; rm -rf ${workspaceFolder}/build ; mkdir build"
+            "linux": {
+                "command": "bash -c ; rm -rf ${workspaceFolder}/build ; mkdir build"
+            },
+            "osx": {
+                "command": "bash -c ; rm -rf ${workspaceFolder}/build ; mkdir build"
+            },
+            "windows": {
+                "command": "powershell -c \"Remove-Item '${workspaceFolder}/build' -Recurse ; mkdir build\""
+            }
         },
         {
-            "dependsOn":[
+            "dependsOn": [
                 "reset"
             ],
             "type": "shell",
             "label": "CMake build debug",
-            "command": "bash",
-            "args": [
-                "-c",
-                ";",
-                "cd",
-                "${workspaceFolder}/build",
-                ";",
-                "/usr/bin/cmake","-DCMAKE_BUILD_TYPE=Debug","..",
-                ";",
-                "/usr/bin/make"
-            ],
-            "options": {
+            "linux": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    ";",
+                    "cd",
+                    "${workspaceFolder}/build",
+                    ";",
+                    "/usr/bin/cmake",
+                    "-DCMAKE_BUILD_TYPE=Debug",
+                    "..",
+                    ";",
+                    "/usr/bin/make"
+                ]
             },
-            "problemMatcher": [
-                
-            ],
+            "osx": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    ";",
+                    "cd",
+                    "${workspaceFolder}/build",
+                    ";",
+                    "/usr/bin/cmake",
+                    "-DCMAKE_BUILD_TYPE=Debug",
+                    "..",
+                    ";",
+                    "/usr/bin/make"
+                ]
+            },
+            "windows": {
+                "command": "powershell",
+                "args": [
+                    "-c",
+                    "\"cd ${workspaceFolder}/build ; cmake -DCMAKE_BUILD_TYPE=Debug .. ; make\""
+                ]
+            },
+            "options": {},
+            "problemMatcher": [],
             "group": {
                 "kind": "build",
                 "isDefault": true
             }
         },
         {
-            "dependsOn":[
+            "dependsOn": [
                 "reset"
             ],
             "type": "shell",
@@ -50,11 +81,8 @@
                 ";",
                 "/usr/bin/make"
             ],
-            "options": {
-            },
-            "problemMatcher": [
-                
-            ],
+            "options": {},
+            "problemMatcher": [],
             "group": {
                 "kind": "build",
                 "isDefault": true
